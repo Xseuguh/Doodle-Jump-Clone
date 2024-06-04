@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var audioStream := $AudioStreamPlayer2D
+
 var jumpImpulse := 7.0 * 60
 var gravityImpulse := 8.0 * 60
 var movementSpeed := 3.0 * 60
@@ -24,6 +26,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravityImpulse * delta
 	if is_on_floor():
 		velocity.y = -jumpImpulse
+		audioStream.play()
 	
 	move_and_slide()
 	
