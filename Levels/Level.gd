@@ -14,6 +14,8 @@ var scrollSpeed = 0.05
 
 @onready var background := $ParallaxBackground/ParallaxLayer/TextureRect
 
+var numberOfScroll = 0
+
 func _ready()-> void:
 	player.global_position.y=treshold
 	for i in platformCount:
@@ -30,6 +32,7 @@ func rand_x()->float:
 	
 func _physics_process(_delta:float)-> void:
 	if player.global_position.y < treshold:
+		numberOfScroll += 1
 		var move: float = lerp(0.0, treshold - player.global_position.y, scrollSpeed)
 		move_background(move)
 		player.global_position.y += move
@@ -53,4 +56,5 @@ func move_background(move:float)-> void:
 
 
 func game_over()-> void:
+	numberOfScroll = 0
 	get_tree().reload_current_scene()
