@@ -58,3 +58,9 @@ func move_background(move:float)-> void:
 func game_over()-> void:
 	numberOfScroll = 0
 	get_tree().reload_current_scene()
+	
+
+func _input(event):
+	if event is InputEventScreenTouch and event.pressed:
+		print("Écran touché")
+		Input.vibrate_handheld()
